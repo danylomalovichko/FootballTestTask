@@ -2,7 +2,7 @@
 //  FootballTestTaskApp.swift
 //  FootballTestTask
 //
-//  Created by ovr on 29.09.2023.
+//  Created by Danylo Malovichko on 29.09.2023.
 //
 
 import SwiftUI
@@ -11,26 +11,21 @@ import SwiftUI
 struct FootballTestTask: App {
     
     @ObservedObject var router = Router()
-    @AppStorage("isCompleteOnboarding") var isCompleteOnboarding: Bool = false
+    @StateObject var appState = AppState(container: DependencyContainer())
+    @AppStorage("isLoading") var isLoading: Bool = true
     
     var body: some Scene {
         WindowGroup {
-            NavigationStack(path: $router.navPath) {
-                if isCompleteOnboarding {
-                    HomeView()
-                        .navigationDestination(for: Router.Destination.self) { destination in
-                            switch destination {
-                            case .mathDetail(let match):
-                                MathDetailView(math: match)
-                            }
-                        }
-                } else {
-                    OnBoardingView()
+            ZStack {
+                NavigationStack(path: $router.navPath) {
+                    RootView()
+                        .environmentObject(appState)
                 }
+                .environmentObject(router)
             }
-
-            .environmentObject(router)
+            .onAppear {
+                isLoading = true
+            }
         }
-        
     }
 }

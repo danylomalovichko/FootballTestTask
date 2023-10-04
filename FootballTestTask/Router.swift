@@ -2,7 +2,7 @@
 //  Router.swift
 //  FootballTestTask
 //
-//  Created by ovr on 29.09.2023.
+//  Created by Danylo Malovichko on 29.09.2023.
 //
 
 import SwiftUI
@@ -10,7 +10,7 @@ import SwiftUI
 final class Router: ObservableObject {
     
     public enum Destination: Codable, Hashable {
-        case mathDetail(match: Match)
+        case mathDetail(matchID: String)
     }
     
     @Published var navPath = NavigationPath()

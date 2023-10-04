@@ -2,7 +2,7 @@
 //  FootballTestTaskTests.swift
 //  FootballTestTaskTests
 //
-//  Created by ovr on 29.09.2023.
+//  Created by Danylo Malovichko on 29.09.2023.
 //
 
 import XCTest
